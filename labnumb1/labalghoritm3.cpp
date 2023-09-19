@@ -1,10 +1,10 @@
-﻿#include <iostream>
+#include <iostream>
 #include <locale.h>
 
 using namespace std;
 
 int main() {
-    setlocale(LC_ALL, "Russian"); 
+    setlocale(LC_ALL, "Russian");
 
     int M, N;
 
@@ -39,23 +39,23 @@ int main() {
 
     // Ищем элементы, которые есть в A, но отсутствуют в B, и добавляем их в C 
     for (int i = 0; i < M; i++) {
-        bool isFoundInB = false;
+        bool esliB = false;
         for (int j = 0; j < N; j++) {
             if (A[i] == B[j]) {
-                isFoundInB = true;
+                esliB = true;
                 break;
             }
         }
         // Если элемент не найден в B, добавляем его в C 
-        if (!isFoundInB) {
-            bool isDuplicate = false;
+        if (!esliB) {
+            bool Duplicat = false;
             for (int k = 0; k < sizeC; k++) {
                 if (C[k] == A[i]) {
-                    isDuplicate = true;
+                    Duplicat = true;
                     break;
                 }
             }
-            if (!isDuplicate) {
+            if (!Duplicat) {
                 C[sizeC++] = A[i];
             }
         }
@@ -63,23 +63,23 @@ int main() {
 
     // Ищем элементы, которые есть в B, но отсутствуют в A, и добавляем их в C 
     for (int i = 0; i < N; i++) {
-        bool isFoundInA = false;
+        bool esliA = false;
         for (int j = 0; j < M; j++) {
             if (B[i] == A[j]) {
-                isFoundInA = true;
+                esliA = true;
                 break;
             }
         }
         // Если элемент не найден в A, добавляем его в C 
-        if (!isFoundInA) {
-            bool isDuplicate = false;
+        if (!esliA) {
+            bool Duplicat = false;
             for (int k = 0; k < sizeC; k++) {
                 if (C[k] == B[i]) {
-                    isDuplicate = true;
+                    Duplicat = true;
                     break;
                 }
             }
-            if (!isDuplicate) {
+            if (!Duplicat) {
                 C[sizeC++] = B[i];
             }
         }
