@@ -1,70 +1,98 @@
-﻿#include <iostream>
+#include <iostream>
 #include <locale.h>
 
 using namespace std;
 
 int main() {
-    setlocale(LC_ALL, "Russian"); 
+    setlocale(LC_ALL, "Russian");
+
     int M, N;
 
-    // Запрашиваем у пользователя размеры двух массивов
+    // вводим массивы
     cout << "Введите размер массива A: ";
     cin >> M;
     cout << "Введите размер массива B: ";
     cin >> N;
 
-    // Создаем два массива A и B  динам память
+    // Создаем два массива A и B и используем динам память
     int* A = new int[M];
     int* B = new int[N];
 
-    // Вводим  массив A
+    // Вводим массив а
     cout << "Введите элементы массива A:" << endl;
     for (int i = 0; i < M; i++) {
         cin >> A[i];
     }
 
-    // Вводим  массив B
+    // Вводим массив в
     cout << "Введите элементы массива B:" << endl;
     for (int i = 0; i < N; i++) {
         cin >> B[i];
     }
 
-    // Создаем третий массив C для хранения элементов из A, которых нет в B (также с динамическим выделением памяти)
-    int* C = new int[M]; //размер
+    // Вычисляем третий массив
+    int maxSize = M + N;
+
+    // Создаем третий массив C с макс размером
+    int* C = new int[maxSize];
     int sizeC = 0; // Размер третьего массива
 
-    // Ищем элементы, которые есть в A, но отсутствуют в B
+    // Ищем элементы, которые есть в A, но отсутствуют в B, и добавляем их в C 
     for (int i = 0; i < M; i++) {
-        bool isFoundInB = false;
+        bool esliB = false;
         for (int j = 0; j < N; j++) {
             if (A[i] == B[j]) {
-                isFoundInB = true;
+                esliB = true;
                 break;
             }
         }
         // Если элемент не найден в B, добавляем его в C 
-        if (!isFoundInB) {
-            bool isDuplicate = false;
+        if (!esliB) {
+            bool Duplicat = false;
             for (int k = 0; k < sizeC; k++) {
                 if (C[k] == A[i]) {
-                    isDuplicate = true;
+                    Duplicat = true;
                     break;
                 }
             }
-            if (!isDuplicate) {
+            if (!Duplicat) {
                 C[sizeC++] = A[i];
             }
         }
     }
 
-    // Выводим элементы из A, которых нет в B
-    cout << "Элементы массива A, которых нет в B:" << endl;
+    // Ищем элементы, которые есть в B, но отсутствуют в A, и добавляем их в C 
+    for (int i = 0; i < N; i++) {
+        bool esliA = false;
+        for (int j = 0; j < M; j++) {
+            if (B[i] == A[j]) {
+                esliA = true;
+                break;
+            }
+        }
+        // Если элемент не найден в A, добавляем его в C 
+        if (!esliA) {
+            bool Duplicat = false;
+            for (int k = 0; k < sizeC; k++) {
+                if (C[k] == B[i]) {
+                    Duplicat = true;
+                    break;
+                }
+            }
+            if (!Duplicat) {
+                C[sizeC++] = B[i];
+            }
+        }
+    }
+
+    // Выводим элементы из A и B, которые не являются общими
+    cout << "Элементы, которые не являются общими для массивов A и B:" << endl;
     for (int i = 0; i < sizeC; i++) {
         cout << C[i] << " ";
     }
     cout << endl;
 
-    // Освобождаем выделенную память, чтобы избежать утечек памяти
+    // Освобождаем память
     delete[] A;
     delete[] B;
     delete[] C;
