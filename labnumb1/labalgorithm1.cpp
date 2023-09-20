@@ -1,5 +1,5 @@
-﻿#include <iostream>
-using namespace std; 
+#include <iostream>
+using namespace std;
 
 int main() {
     setlocale(LC_ALL, "Russian");
@@ -36,15 +36,15 @@ int main() {
         for (int j = 0; j < N; j++) {
             if (A[i] == B[j]) {
                 // Проверяем, был ли элемент уже добавлен
-                bool isDuplicate = false;
+                bool Duplicat = false;
                 for (int k = 0; k < sizeC; k++) {
                     if (C[k] == A[i]) {
-                        isDuplicate = true;
+                        Duplicat = true;
                         break;
                     }
                 }
                 // Если элемент не был добавлен, добавляем его
-                if (!isDuplicate) {
+                if (!Duplicat) {
                     C[sizeC++] = A[i];
                 }
                 break; // Выходим из внутреннего цикла после нахождения общего элемента
