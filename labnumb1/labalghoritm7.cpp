@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 #include <locale>
 
 using namespace std;
